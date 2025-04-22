@@ -13,7 +13,7 @@ class Program
             Console.WriteLine("Select the number 1 if you want a password made up of only numbers\n" +
             "select the number 2 if you want a password made up of only lowercase and uppercase letters\n" +
             "select the number 3 if you want a password made up of a mixture of lowercase and uppercase letters and numbers.\n" + 
-            "select the number 3 if you want the password to consist of a combination of lowercase, uppercase letters and numbers, as well as special characters.\n" +
+            "select the number 4 if you want the password to consist of a combination of lowercase, uppercase letters and numbers, as well as special characters.\n" +
             "All passwords are generated up to 16 numbers.");
 
             bool isValid = int.TryParse(Console.ReadLine(), out choice);
@@ -23,8 +23,6 @@ class Program
                 Console.WriteLine($"Your password: {password}");
                 break;
             }
-
-
             else { Console.WriteLine("Mistake! Please select a number from 1 to 3."); }
 
         } while (choice < 1 || choice > 4);
@@ -45,6 +43,7 @@ class Program
             1 => numbers,
             2 => letters,
             3 => mixed,
+            4 => mixed2,
             _ => numbers,
         };
         char[] password = new char[16];
