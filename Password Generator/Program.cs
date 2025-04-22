@@ -7,28 +7,36 @@ class Program
         int choice;
         Console.WriteLine("Welcome to Password Generator.\n" +
         "Which password do you want to generate with:");
-
-        do
+        while (true)
         {
-            Console.WriteLine("Select the number 1 if you want a password made up of only numbers\n" +
-            "select the number 2 if you want a password made up of only lowercase and uppercase letters\n" +
-            "select the number 3 if you want a password made up of a mixture of lowercase and uppercase letters and numbers.\n" + 
-            "select the number 4 if you want the password to consist of a combination of lowercase, uppercase letters and numbers, as well as special characters.\n" +
-            "All passwords are generated up to 16 numbers.");
 
-            bool isValid = int.TryParse(Console.ReadLine(), out choice);
-            if (isValid && choice >= 1 && choice <= 4)
-            { Console.WriteLine($"You have chosen an option {choice}.");
-                string password = GeneratePassword(choice);
-                Console.WriteLine($"Your password: {password}");
+            do
+            {
+                Console.WriteLine("Select the number 1 if you want a password made up of only numbers\n" +
+                "select the number 2 if you want a password made up of only lowercase and uppercase letters\n" +
+                "select the number 3 if you want a password made up of a mixture of lowercase and uppercase letters and numbers.\n" +
+                "select the number 4 if you want the password to consist of a combination of lowercase, uppercase letters and numbers, as well as special characters.\n" +
+                "All passwords are generated up to 16 numbers.");
+
+                bool isValid = int.TryParse(Console.ReadLine(), out choice);
+                if (isValid && choice >= 1 && choice <= 4)
+                {
+                    Console.WriteLine($"You have chosen an option {choice}.");
+                    string password = GeneratePassword(choice);
+                    Console.WriteLine($"Your password: {password}");
+
+                }
+                else { Console.WriteLine("Mistake! Please select a number from 1 to 4."); }
+
+            } while (choice < 1 || choice > 4);
+            Console.WriteLine("\nDo you want to generate another password? (y/n)");
+            string response = Console.ReadLine()?.Trim().ToLower();
+            if (response != "y" && response != "yes")
+            {
+                Console.WriteLine("\nPress any key to exit...");
                 break;
             }
-            else { Console.WriteLine("Mistake! Please select a number from 1 to 3."); }
-
-        } while (choice < 1 || choice > 4);
-
-            Console.WriteLine("\nPress any key to exit...");
-        Console.ReadKey();
+        }
     }
     static string GeneratePassword(int choice)
     {
